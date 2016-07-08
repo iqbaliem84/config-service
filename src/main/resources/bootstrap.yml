@@ -1,0 +1,56 @@
+
+server:
+  port: 8888
+spring:
+  application:
+    name: config-service
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/iqbaliem84/shopping-cart-conf-pivotal.git
+info:
+  component: Config Server          
+---
+spring:
+  profiles: openshift
+logging:
+  file: ${OPENSHIFT_LOG_DIR}/openshift_config-service_app.log
+  pattern:
+    console: "%d %-5level %logger : %msg%n"
+    file: "%d %-5level [%thread] %logger : %msg%n"
+  level:
+    org.springframework: WARN
+    org.ihkhan: WARN
+---
+spring:
+  profiles: production
+logging:
+  file: ${OPENSHIFT_LOG_DIR}/production_config-service_app.log
+  pattern:
+    file: "%d %-5level [%thread] %logger{0} : %msg%n"
+  level:
+    org.springframework.web: WARN
+    org.ihkhan: WARN
+---
+spring:
+  profiles: dev
+logging:
+  file: logs/dev_config-service_app.log
+  pattern:
+    file: "%d %-5level [%thread] %logger{0} : %msg%n"
+  level:
+    org.springframework.web: DEBUG
+    org.ihkhan: DEBUG
+---
+spring:
+  profiles: cloud
+logging:
+  file: ./logs/cloud-config-service-API.log
+  pattern:
+    console: "%d %-5level %logger : %msg%n"
+    file: "%d %-5level [%thread] %logger : %msg%n"
+  level:
+    org.springframework: WARN
+    org.ihkhan: WARN
+	
