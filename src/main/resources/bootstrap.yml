@@ -10,7 +10,7 @@ spring:
         git:
           uri: https://github.com/iqbaliem84/shopping-cart-conf-pivotal.git
 info:
-  component: Config Server          
+  component: Config Server
 ---
 spring:
   profiles: openshift
@@ -53,4 +53,3 @@ logging:
   level:
     org.springframework: WARN
     org.ihkhan: WARN
-	
